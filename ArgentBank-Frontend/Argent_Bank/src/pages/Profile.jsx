@@ -1,12 +1,16 @@
 import Heading from "../components/user/Heading";
 import Transaction from "../components/user/Transaction";
+import { useSelector } from "react-redux";
 
 function ProfilePage() {
+  const userProfile = useSelector(
+    (state) => state.user?.userProfile?.body?.userName
+  );
   return (
     <>
       <main className="main bg-dark">
         <div className="header">
-          <Heading title="Welcome back" username="Tony Jarvis" />
+          <Heading title="Welcome back" username={userProfile} />
         </div>
         <h2 className="sr-only">Accounts</h2>
         <Transaction

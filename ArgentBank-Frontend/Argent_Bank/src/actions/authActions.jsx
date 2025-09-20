@@ -10,11 +10,12 @@ export default function login(email, password) {
       });
       const data = await response.json();
       if (data.status === 200) {
-        const token = data.body.token;
+        const token = await data.body.token;
         localStorage.setItem("token", token);
-        dispatch({ type: "LOGIN_SUCCESS", payload: { token } });
+        dispatch({ type: "LOGIN_SUCCESS", payload: token });
       }
       if (data.status === 400) {
+        localStorage.removeItem("token");
         dispatch({ type: "LOGIN_FAILURE", payload: data.message });
       }
     } catch (error) {

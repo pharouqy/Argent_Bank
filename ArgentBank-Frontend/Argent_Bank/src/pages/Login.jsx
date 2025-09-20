@@ -11,7 +11,7 @@ function LoginPage() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const error = useSelector((state) => state.auth.error);
-  console.log("LoginPage render, error:", error);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login(email, password));

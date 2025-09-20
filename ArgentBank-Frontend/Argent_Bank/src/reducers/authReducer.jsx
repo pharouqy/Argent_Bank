@@ -1,7 +1,6 @@
 const initialState = {
-  token: null,
+  token: localStorage.getItem("token") || null,
   isAuthenticated: false,
-  loading: null,
   error: null,
 };
 
@@ -10,9 +9,8 @@ export default function authReducer(state = initialState, action) {
     case "LOGIN_SUCCESS":
       return {
         ...state,
-        token: action.payload.token,
+        token: action.payload,
         isAuthenticated: true,
-        loading: false,
         error: null,
       };
     case "LOGIN_FAILURE":
@@ -20,7 +18,6 @@ export default function authReducer(state = initialState, action) {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false,
         error: action.payload,
       };
     case "LOGOUT":
@@ -28,7 +25,6 @@ export default function authReducer(state = initialState, action) {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false,
         error: null,
       };
     default:
