@@ -290,6 +290,12 @@ nav > div {
   display: flex;
 }
 
+input#heading {
+    margin: 10px;
+    height: 35px;
+    font-size: larger;
+}
+
 @media (min-width: 720px) {
   .account {
     flex-direction: row;
