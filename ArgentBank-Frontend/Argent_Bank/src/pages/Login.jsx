@@ -11,6 +11,7 @@ function LoginPage() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const error = useSelector((state) => state.auth.error);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,17 +54,15 @@ function LoginPage() {
               />
             </div>
             <div className="input-remember">
-              <input type="checkbox" id="remember-me" />
+              <input
+                type="checkbox"
+                id="remember-me"
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
               <label htmlFor="remember-me">Remember me</label>
             </div>
-            {error && (
-              <div
-                className="error-message"
-                style={{ color: "red", marginBottom: "1em" }}
-              >
-                {error}
-              </div>
-            )}
+            {error && <div className="error-message">{error}</div>}
             <button
               type="submit"
               className="sign-in-button"

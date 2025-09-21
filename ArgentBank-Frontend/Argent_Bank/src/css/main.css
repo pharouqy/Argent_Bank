@@ -290,10 +290,21 @@ nav > div {
   display: flex;
 }
 
-input#heading {
-    margin: 10px;
-    height: 35px;
-    font-size: larger;
+.edit-input {
+  margin: 10px;
+  height: 35px;
+  font-size: larger;
+}
+
+main > div > div > div > div.edit-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 1em;
 }
 
 @media (min-width: 720px) {

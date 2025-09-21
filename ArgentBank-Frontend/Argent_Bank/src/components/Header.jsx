@@ -18,7 +18,6 @@ function Header() {
     }
   }, [isAuthenticated, dispatch]);
 
-  console.log(userProfile);
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -44,7 +43,7 @@ function Header() {
               <i className="fas fa-user-circle"></i> {userProfile}
             </div>
             <button className="main-nav-item" onClick={() => handleLogout()}>
-              <i className="fas fa-sign-out-alt"></i> Sign Out
+              <i className="fas fa-sign-out-alt"></i> Logout
             </button>
           </>
         )}
