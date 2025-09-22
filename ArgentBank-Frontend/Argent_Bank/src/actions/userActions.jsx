@@ -1,6 +1,8 @@
+import Cookies from "js-cookie";
+
 function fetchUserProfile() {
   return async (dispatch) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || Cookies.get("token");
     if (!token) {
       dispatch({ type: "FETCH_PROFILE_FAILURE", payload: "No token found" });
       return;
@@ -31,7 +33,7 @@ function fetchUserProfile() {
 
 function updateUserProfile({ userName }) {
   return async (dispatch) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || Cookies.get("token");
     if (!token) {
       dispatch({ type: "FETCH_PROFILE_FAILURE", payload: "No token found" });
       return;

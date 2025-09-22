@@ -1,6 +1,8 @@
+import Cookies from "js-cookie";
+
 const initialState = {
-  token: localStorage.getItem("token") || null,
-  isAuthenticated: !!localStorage.getItem("token"),
+  token: localStorage.getItem("token") || Cookies.get("token"),
+  isAuthenticated: !!localStorage.getItem("token") || !!Cookies.get("token"),
   error: null,
 };
 

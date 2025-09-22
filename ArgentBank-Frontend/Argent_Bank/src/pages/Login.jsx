@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import login from "../actions/authActions";
+import Coockies from "js-cookie";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -11,11 +12,11 @@ function LoginPage() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const error = useSelector((state) => state.auth.error);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(!!Coockies.get("token"));
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    dispatch(login(email, password, rememberMe));
   };
 
   useEffect(() => {

@@ -1,4 +1,6 @@
-export default function login(email, password) {
+import Cookies from "js-cookie";
+
+export default function login(email, password, remerberMe) {
   return async (dispatch) => {
     try {
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
@@ -12,7 +14,19 @@ export default function login(email, password) {
       if (data.status === 200) {
         const token = await data.body.token;
         localStorage.setItem("token", token);
-        dispatch({ type: "LOGIN_SUCCESS", payload: token });
+        remerberMe
+          ? Cookies.set("token", token, {
+              expires: 7, // durée de vie (7 jours)
+              secure: true, // uniquement via HTTPS
+              sameSite: "Strict", // empêche l'envoi cross-site (CSRF)
+              path: "/", // accessible partout dans ton domaine
+            })
+          : Cookies.remove("token");
+
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: token || Cookies.get("token"),
+        });
       }
       if (data.status === 400) {
         localStorage.removeItem("token");

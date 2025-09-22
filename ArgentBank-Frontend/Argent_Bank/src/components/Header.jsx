@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import argentBankLogo from "../assets/img/argentBankLogo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/authActions";
